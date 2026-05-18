@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ArrowRight, Cpu, Database, Activity, ThermometerSnowflake, Layers, ChevronDown } from 'lucide-react';
+import { ArrowRight, Cpu, Database, Activity, ThermometerSnowflake, Layers, ChevronDown, Box } from 'lucide-react';
 
 // --- CINEMATIC MOTION HOOKS ---
 const useScrollFade = (threshold = 0.15) => {
@@ -60,16 +60,14 @@ const NavBar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  
-
   return (
     <nav className={`fixed top-0 w-full z-50 transition-all duration-1000 ${
       scrolled ? 'bg-[#050505]/90 backdrop-blur-xl border-b border-[#151515] py-4' : 'bg-transparent py-8'
     }`}>
       <div className="max-w-[90%] md:max-w-7xl mx-auto flex justify-between items-center">
         <div className="flex flex-col">
-          <span className="text-white text-[10px] tracking-[0.3em] font-medium uppercase">fathan.</span>
-          <span className="text-[#A1A1AA] text-[8px] tracking-[0.2em] uppercase mt-1">Studies</span>
+          <span className="text-white text-[10px] tracking-[0.3em] font-medium uppercase">fathan</span>
+          <span className="text-[#A1A1AA] text-[8px] tracking-[0.2em] uppercase mt-1">Student</span>
         </div>
         
         <div className="hidden md:flex gap-12 text-[10px] tracking-[0.2em] text-[#A1A1AA] uppercase font-medium items-center">
@@ -114,7 +112,6 @@ const NavBar = () => {
 const HeroSection = () => {
   return (
     <section className="relative h-screen w-full bg-[#050505] overflow-hidden flex items-end pb-24 md:pb-32">
-      {/* Subtle line motion for an architectural feel */}
       <div className="absolute left-[15%] top-0 w-[1px] h-full bg-gradient-to-b from-transparent via-white/5 to-transparent opacity-50"></div>
       <div className="absolute right-[25%] top-0 w-[1px] h-full bg-gradient-to-b from-transparent via-white/5 to-transparent opacity-30"></div>
 
@@ -124,7 +121,7 @@ const HeroSection = () => {
             src="https://player.vimeo.com/video/1190913752?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0" 
             frameBorder="0" 
             allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
-            className="absolute top-0 left-0 w-full h-full filter contrast-[1.1] grayscale brightness-[1.2]"
+            className="absolute top-0 left-0 w-full h-full filter contrast-[1.1] grayscale brightness-[1.6]"
             title="Hero Background Sequence"
           ></iframe>
         </div>
@@ -303,7 +300,6 @@ const SystemStudies = () => {
 const ThematicTransition = () => {
   return (
     <section className="py-32 md:py-48 bg-[#050505] text-white relative overflow-hidden border-t border-[#151515]">
-      {/* Background Cinematic Image */}
       <div className="absolute inset-0 z-0">
         <img 
           src="https://i.extremetech.com/imagery/content-types/07w7QV3Rp1xwRtHCWLfwjIS/hero-image.fit_lim.size_1600x900.v1707845231.jpg" 
@@ -341,62 +337,151 @@ const ThematicTransition = () => {
 };
 
 const MyProjects = () => {
+  const skills = [
+    { name: "HTML5", level: 90 },
+    { name: "Tailwind CSS", level: 80 },
+    { name: "ReactJS", level: 60 },
+    { name: "PHP", level: 70 },
+    { name: "Python", level: 70 }
+  ];
+
+  const projectsData = [
+    {
+      title: "Environment",
+      type: "Web Application",
+      desc: "A structural approach to environmental data representation, emphasizing clarity and modern responsiveness.",
+      img: "https://i.ibb.co.com/GQJJFXVs/Screenshot-2026-05-19-022650.png",
+      link: "https://fxnzzz.github.io/environment/"
+    },
+    {
+      title: "SMK Digi",
+      type: "Institution Portal",
+      desc: "Comprehensive redesign of a school portal focusing on modern UI/UX principles and functional architecture.",
+      img: "https://i.ibb.co.com/q3m9PCr0/Screenshot-2026-05-19-022707.png",
+      link: "https://fxnzzz.github.io/smk-digi/"
+    },
+    {
+      title: "Kelompok 8",
+      type: "Collaborative Project",
+      desc: "A group-driven digital interface built with precision, demonstrating collaborative frontend capabilities.",
+      img: "https://i.ibb.co.com/wZKySnT5/Screenshot-2026-05-19-022733.png",
+      link: "https://fxnzzz.github.io/kel-8/"
+    },
+    {
+      title: "Solara",
+      type: "Travel",
+      desc: "A clean, sustainable energy landing page architected for maximum visual impact and smooth interactions.",
+      img: "https://i.ibb.co.com/0VMHzpF5/Screenshot-2026-05-19-022807.png",
+      link: "https://fxnzzz.github.io/solarab/"
+    },
+    {
+      title: "Senja",
+      type: "Cafe",
+      desc: "An atmospheric frontend build highlighting minimal typographic hierarchy and seamless aesthetic flow.",
+      img: "https://i.ibb.co.com/tTLkppzB/Screenshot-2026-05-19-022827.png",
+      link: "https://fxnzzz.github.io/senja/"
+    },
+    {
+      title: "Maison",
+      type: "Fashion",
+      desc: "Premium real estate and architecture presentation layer, refined for spatial elegance and performance.",
+      img: "https://i.ibb.co.com/rRDyKsrX/Screenshot-2026-05-19-022848.png",
+      link: "https://fxnzzz.github.io/maison/"
+    }
+  ];
+
   return (
-    <section id="projects" className="bg-[#050505] text-white py-32 md:py-48 selection:bg-white selection:text-black border-t border-[#151515]">
+    <section id="projects" className="bg-[#FAFAFA] text-[#050505] py-32 md:py-48 selection:bg-[#050505] selection:text-white border-t border-gray-200">
+      
       {/* Editorial Header */}
       <div className="max-w-[90%] md:max-w-7xl mx-auto mb-24">
         <FadeIn>
-           <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-[#151515] pb-12 gap-8">
+           <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-gray-200 pb-12 gap-8">
              <div>
-               <p className="text-[#A1A1AA] text-[10px] tracking-[0.4em] uppercase mb-8">05 — Selected Works</p>
-               <h3 className="text-4xl md:text-6xl font-medium tracking-tighter uppercase">My Projects.</h3>
+               <p className="text-[#777] text-[10px] tracking-[0.4em] uppercase mb-8">05 — Selected Works</p>
+               <h3 className="text-4xl md:text-6xl font-medium tracking-tighter uppercase text-[#050505]">My Projects.</h3>
              </div>
-             <p className="text-[#A1A1AA] text-sm font-light max-w-xs leading-relaxed">
+             <p className="text-[#666] text-sm font-light max-w-xs leading-relaxed">
                Structural engineering and digital architecture analysis.
              </p>
            </div>
         </FadeIn>
+
+        {/* SKILLS SECTION */}
+        <FadeIn delay={200}>
+          <div className="mt-20 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
+            <div className="lg:col-span-5">
+              <h4 className="text-sm uppercase tracking-[0.2em] font-medium text-[#333] mb-6">Technical Foundation</h4>
+              <p className="text-sm font-light text-[#666] leading-relaxed">
+                A precise stack optimized for modern frontend performance, structural stability, and seamless interactive experiences.
+              </p>
+            </div>
+            <div className="lg:col-span-7 space-y-6 flex flex-col justify-center">
+              {skills.map((skill, idx) => (
+                <div key={idx} className="group/skill">
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-[10px] uppercase tracking-[0.15em] font-medium text-[#444]">{skill.name}</span>
+                    <span className="text-[10px] font-mono text-[#888]">{skill.level}%</span>
+                  </div>
+                  <div className="w-full h-[2px] bg-gray-200 rounded-full overflow-hidden">
+                    <div 
+                      className="h-full bg-[#1A365D] rounded-full transition-all duration-1000 ease-out origin-left"
+                      style={{ width: `${skill.level}%` }}
+                    ></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </FadeIn>
       </div>
 
-      {/* Grid of Secondary Projects */}
+      {/* Grid of Projects */}
       <div className="max-w-[90%] md:max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
-          <div className="lg:col-span-6 group cursor-pointer">
-            <FadeIn delay={200}>
-              <div className="relative aspect-[16/9] bg-[#0D0D0D] border border-[#151515] mb-8 overflow-hidden">
-                 <img 
-                   src="https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?auto=format&fit=crop&q=80&w=1200" 
-                   alt="Thermal Dissipation Array" 
-                   className="w-full h-full object-cover grayscale contrast-125 opacity-30 group-hover:opacity-60 group-hover:scale-[1.03] transition-all duration-[2000ms] ease-out" 
-                 />
-                 <div className="absolute top-6 left-6 text-[9px] font-mono text-[#555] tracking-widest uppercase font-medium">Research Project // 2024</div>
-              </div>
-              <div className="flex items-center gap-4 mb-4">
-                 <div className="w-1 h-1 bg-white opacity-50"></div>
-                 <h4 className="text-xl font-medium tracking-tight">Thermal Dissipation Array</h4>
-              </div>
-              <p className="text-[#A1A1AA] text-sm font-light leading-relaxed">Modeling heat extraction dynamics for 3D integrated circuits, ensuring structural reliability under peak load computational cycles.</p>
-            </FadeIn>
-          </div>
-          
-          <div className="lg:col-span-6 group cursor-pointer">
-            <FadeIn delay={400}>
-              <div className="relative aspect-[16/9] bg-[#0D0D0D] border border-[#151515] mb-8 overflow-hidden">
-                 <img 
-                   src="https://images.unsplash.com/photo-1544256718-3b61023f5451?auto=format&fit=crop&q=80&w=1200" 
-                   alt="Backend Infrastructure Architecture" 
-                   className="w-full h-full object-cover grayscale contrast-125 opacity-30 group-hover:opacity-60 group-hover:scale-[1.03] transition-all duration-[2000ms] ease-out" 
-                 />
-                 <div className="absolute top-6 left-6 text-[9px] font-mono text-[#555] tracking-widest uppercase font-medium">Infrastructure Project // 2025</div>
-              </div>
-              <div className="flex items-center gap-4 mb-4">
-                 <div className="w-1 h-1 bg-white opacity-50"></div>
-                 <h4 className="text-xl font-medium tracking-tight">Infrastructure Architecture</h4>
-              </div>
-              <p className="text-[#A1A1AA] text-sm font-light leading-relaxed">Scalable data routing architectures designed to bridge software instructions and physical hardware execution environments.</p>
-            </FadeIn>
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
+          {projectsData.map((project, idx) => (
+            <div key={idx} className="group flex flex-col">
+              <FadeIn delay={(idx % 2) * 200}>
+                {/* Project Image */}
+                <a href={project.link} target="_blank" rel="noreferrer" className="block relative aspect-[16/10] bg-white border border-gray-200 mb-8 overflow-hidden">
+                   <img 
+                     src={project.img} 
+                     alt={project.title} 
+                     className="w-full h-full object-cover grayscale-[0.2] contrast-[1.05] opacity-90 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-[2000ms] ease-out" 
+                   />
+                   <div className="absolute top-6 left-6 text-[9px] font-mono text-[#444] tracking-widest uppercase font-medium bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-sm shadow-sm">
+                     {project.type}
+                   </div>
+                </a>
+                
+                {/* Project Info */}
+                <div className="flex items-center gap-4 mb-4">
+                   <div className="w-1 h-1 bg-[#1A365D] opacity-70"></div>
+                   <h4 className="text-xl font-medium tracking-tight text-[#050505]">{project.title}</h4>
+                </div>
+                <p className="text-[#666] text-sm font-light leading-relaxed mb-8 flex-grow">
+                  {project.desc}
+                </p>
+                
+                {/* Modern Button */}
+                <a href={project.link} target="_blank" rel="noreferrer" className="inline-flex items-center gap-3 text-[10px] uppercase tracking-[0.2em] font-medium text-[#444] hover:text-[#1A365D] transition-colors duration-500 mt-auto w-max group/btn">
+                  Live Preview
+                  <ArrowRight className="w-3 h-3 group-hover/btn:translate-x-2 transition-transform duration-700 ease-out stroke-[1.5]" />
+                </a>
+              </FadeIn>
+            </div>
+          ))}
         </div>
+      </div>
+
+      {/* Recount Text block */}
+      <div className="max-w-[90%] md:max-w-3xl mx-auto mt-40 text-center relative">
+        <FadeIn>
+          <div className="w-px h-16 bg-gradient-to-b from-gray-300 to-transparent mx-auto mb-10"></div>
+          <p className="text-sm md:text-base font-light text-[#555] leading-loose italic">
+            "I redesigned a school website using Vite, React, and Tailwind CSS. At first, the website still looked outdated and similar to an old template. Then, I refined the layout, colors, typography, and responsiveness to make it look more modern and professional. I also fixed some issues like broken dropdown menus and non-functional buttons. Through this project, I learned more about UI/UX design and modern frontend development."
+          </p>
+        </FadeIn>
       </div>
     </section>
   );
@@ -493,19 +578,73 @@ const ContactSection = () => {
 };
 
 const Footer = () => (
-  <footer className="bg-[#050505] py-12 border-t border-[#111] text-center">
-    <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-      <p className="text-[#555] text-[9px] uppercase tracking-[0.3em] font-mono">
-        © {new Date().getFullYear()} fathan.
-      </p>
-      <div className="flex gap-4 opacity-50">
-        <div className="w-1 h-1 bg-[#444] rounded-full"></div>
-        <div className="w-1 h-1 bg-[#444] rounded-full"></div>
-        <div className="w-1 h-1 bg-[#444] rounded-full"></div>
+  <footer className="bg-[#18181B] relative w-full pt-0 pb-16 border-t border-[#151515]">
+    {/* Abstract Background Image Section */}
+    <div className="w-full h-[40vh] md:h-[50vh] relative overflow-hidden bg-[#050505]">
+      <img
+        src="https://i.ibb.co.com/DDtjJ2QP/photo-1520034475321-cbe63696469a.avif"
+        alt="Abstract Dark Background"
+        className="w-full h-full object-cover opacity-25 grayscale contrast-125"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#18181B] via-[#18181B]/40 to-transparent"></div>
+    </div>
+
+    {/* Main Footer Box */}
+    <div className="max-w-[95%] md:max-w-[90%] mx-auto -mt-20 md:-mt-32 relative z-10">
+      <div className="border border-[#3F3F46] bg-[#18181B] p-8 md:p-16 lg:p-20 flex flex-col md:flex-row justify-between items-start md:items-end gap-16 min-h-[40vh] shadow-2xl">
+        
+        {/* Left: Thank You */}
+        <div className="flex-1 w-full">
+          <FadeIn>
+            <h2 className="text-[4.5rem] md:text-[6rem] lg:text-[8rem] font-bold text-[#F4F4F5] tracking-tighter leading-[0.9] mb-4 md:mb-0">
+              Thank you
+            </h2>
+          </FadeIn>
+        </div>
+
+        {/* Right: Contact & Links */}
+        <div className="flex flex-col gap-10 w-full md:w-auto pb-4 z-20">
+          <FadeIn delay={200}>
+            {/* Contact Details */}
+            <div className="mb-10">
+              <h3 className="text-[11px] tracking-[0.2em] font-bold text-[#F4F4F5] uppercase mb-4">Contact</h3>
+              <div className="text-[#A1A1AA] text-sm font-light space-y-1.5">
+                <p className="text-[#F4F4F5] font-medium">Fathan Mulia Fahriza</p>
+                <p><a href="mailto:exampligratia@gmail.com" className="hover:text-white transition-colors duration-300">exampligratia@gmail.com</a></p>
+                <p><a href="tel:+12499002340" className="hover:text-white transition-colors duration-300">+1 (249) 900-2340</a></p>
+              </div>
+            </div>
+
+            {/* Socials / Connect Profile */}
+            <div>
+              <h3 className="text-[11px] tracking-[0.2em] font-bold text-[#F4F4F5] uppercase mb-4">Connect</h3>
+              <div className="text-[#A1A1AA] text-sm font-light space-y-1.5">
+                <p><a href="https://github.com/fxnzzz" target="_blank" rel="noreferrer" className="hover:text-white transition-colors duration-300">GitHub Profile</a></p>
+                <p><a href="https://wa.me/12499002340" target="_blank" rel="noreferrer" className="hover:text-white transition-colors duration-300">WhatsApp Direct</a></p>
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+
+        {/* Bottom Right Box Icon matching Screenshot aesthetic */}
+        <div className="absolute bottom-6 right-6 md:bottom-10 md:right-10 text-[#F4F4F5]">
+          <Box className="w-6 h-6 stroke-[1.5]" />
+        </div>
       </div>
-      <p className="text-[#555] text-[9px] uppercase tracking-[0.3em] font-mono">
-        Research & Infrastructure
-      </p>
+
+      {/* Lower Footer Elements - Legal, Nav, Bio */}
+      <div className="mt-8 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 px-2 text-[#777] text-[10px] uppercase tracking-[0.2em] font-mono">
+        <p>© {new Date().getFullYear()} fathan. <span className="hidden md:inline">All rights reserved.</span></p>
+
+        <div className="flex flex-wrap gap-6 md:gap-10">
+          <a href="#profile" className="hover:text-[#F4F4F5] transition-colors duration-300">About</a>
+          <a href="#projects" className="hover:text-[#F4F4F5] transition-colors duration-300">Selected Works</a>
+          <a href="#research" className="hover:text-[#F4F4F5] transition-colors duration-300">Research</a>
+          <a href="#contact" className="hover:text-[#F4F4F5] transition-colors duration-300">Contact</a>
+        </div>
+
+        <p className="text-right">Software Eng. / ID</p>
+      </div>
     </div>
   </footer>
 );
